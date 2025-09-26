@@ -1,5 +1,5 @@
 [project]
-name = "datacommons-mcp"
+name = "un-datacommons-mcp"
 dynamic = ["version"]
 description = "Data Commons MCP server."
 readme = "README.md"
@@ -17,7 +17,7 @@ dependencies = [
 urls = {Homepage = "https://github.com/datacommonsorg/agent-toolkit"}
 
 [project.scripts]
-datacommons-mcp = "datacommons_mcp.cli:cli"
+un-datacommons-mcp = "datacommons_mcp.cli:cli"
 
 [build-system]
 requires = ["uv", "setuptools"]

@@ -1,5 +1,5 @@
 # Publishes the wrapper package 'un-datacommons-mcp' to PyPI
-name: Publish un-datacommons-mcp
+name: Publish un-datacommons-mcp (core)
 
 on:
   push:
@@ -18,17 +18,17 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: Compare wrapper versions and check for bump
+      - name: Compare core package version and check for bump
         id: versions
         run: |
-          FILE="packages/un-datacommons-mcp/pyproject.toml"
+          FILE="packages/datacommons-mcp/datacommons_mcp/version.py"
 
           # Extract version from current commit
-          NEW_VERSION=$(grep -E '^version\s*=\s*"' "$FILE" | head -n1 | sed 's/version\s*=\s*"\(.*\)"/\1/')
+          NEW_VERSION=$(grep "__version__" "$FILE" | sed 's/__version__ = "\(.*\)"/\1/')
 
-          # Extract version from previous commit (if file exists previously)
-          if git ls-tree -r HEAD~1 --name-only | grep -q "packages/un-datacommons-mcp/pyproject.toml"; then
-            OLD_VERSION=$(git show HEAD~1:$FILE | grep -E '^version\s*=\s*"' | head -n1 | sed 's/version\s*=\s*"\(.*\)"/\1/')
+          # Extract version from previous commit (if file existed)
+          if git ls-tree -r HEAD~1 --name-only | grep -q "packages/datacommons-mcp/datacommons_mcp/version.py"; then
+            OLD_VERSION=$(git show HEAD~1:$FILE | grep "__version__" | sed 's/__version__ = "\(.*\)"/\1/')
           else
             OLD_VERSION=""
           fi
@@ -60,14 +60,14 @@ jobs:
       - name: Install uv
         run: pip install uv
 
-      - name: Build wrapper package
-        working-directory: packages/un-datacommons-mcp
+      - name: Build package
+        working-directory: packages/datacommons-mcp
         run: uv build
 
       - name: Publish to PyPI (OIDC or token)
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          packages-dir: packages/un-datacommons-mcp/dist/
+          packages-dir: packages/datacommons-mcp/dist/
           # If you prefer token-based publish, set PYPI_API_TOKEN in repo secrets and uncomment next line
           # password: ${{ secrets.PYPI_API_TOKEN }}
 
@@ -80,4 +80,3 @@ jobs:
           echo "Creating and pushing tag: $TAG"
           git tag "$TAG"
           git push origin "$TAG"
-

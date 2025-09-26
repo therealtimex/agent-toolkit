@@ -1,5 +1,7 @@
 # Data Commons MCP Server
 
+mcp-name: io.github.therealtimex/un-datacommons-mcp
+
 This is a Model Context Protocol (MCP) server for fetching public statistical data from [Data Commons](https://datacommons.org) instances.
 
 Data Commons is an open knowledge repository that provides a unified view across multiple public data sets and statistics.  This server allows any MCP-enabled agent or client to query the Data Commons knowledge graph.
@@ -35,7 +37,7 @@ This runs the server with Streamable HTTP.
 
 ```bash
 # Runs on default port 8080
-uvx datacommons-mcp serve http [--port <PORT>]
+uvx un-datacommons-mcp serve http [--port <PORT>]
 ```
 
 The server will be available at `http://localhost:<port>/mcp`.
@@ -45,7 +47,7 @@ The server will be available at `http://localhost:<port>/mcp`.
 This transport mode is intended for local integrations and is programmatically configured within a client (like Gemini CLI settings) to communicate over `stdio`.
 
 ```bash
-uvx datacommons-mcp serve stdio
+uvx un-datacommons-mcp serve stdio
 ```
 
 ## Clients
