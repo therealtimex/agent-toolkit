@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - main
+      - realtimex
   workflow_dispatch: {}
 
 jobs:
