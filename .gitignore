@@ -189,3 +189,7 @@ Thumbs.db
 # Gemini
 gemini.md
 /.idea
+
+# MCP Publisher tokens (do not commit)
+.mcpregistry_github_token
+.mcpregistry_registry_token

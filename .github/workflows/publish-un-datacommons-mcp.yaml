@@ -1,0 +1,83 @@
+# Publishes the wrapper package 'un-datacommons-mcp' to PyPI
+name: Publish un-datacommons-mcp
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: {}
+
+jobs:
+  check_version:
+    runs-on: ubuntu-latest
+    outputs:
+      bump: ${{ steps.versions.outputs.bump }}
+      new_version: ${{ steps.versions.outputs.new_version }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Compare wrapper versions and check for bump
+        id: versions
+        run: |
+          FILE="packages/un-datacommons-mcp/pyproject.toml"
+
+          # Extract version from current commit
+          NEW_VERSION=$(grep -E '^version\s*=\s*"' "$FILE" | head -n1 | sed 's/version\s*=\s*"\(.*\)"/\1/')
+
+          # Extract version from previous commit (if file exists previously)
+          if git ls-tree -r HEAD~1 --name-only | grep -q "packages/un-datacommons-mcp/pyproject.toml"; then
+            OLD_VERSION=$(git show HEAD~1:$FILE | grep -E '^version\s*=\s*"' | head -n1 | sed 's/version\s*=\s*"\(.*\)"/\1/')
+          else
+            OLD_VERSION=""
+          fi
+
+          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          if [ "$NEW_VERSION" != "$OLD_VERSION" ] && [ -n "$NEW_VERSION" ]; then
+            echo "Version bumped to $NEW_VERSION"
+            echo "bump=true" >> $GITHUB_OUTPUT
+          else
+            echo "No wrapper version change (current: $NEW_VERSION, previous: $OLD_VERSION)"
+            echo "bump=false" >> $GITHUB_OUTPUT
+          fi
+
+  build_and_publish:
+    needs: check_version
+    if: needs.check_version.outputs.bump == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write  # Required for PyPI Trusted Publishing
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install uv
+        run: pip install uv
+
+      - name: Build wrapper package
+        working-directory: packages/un-datacommons-mcp
+        run: uv build
+
+      - name: Publish to PyPI (OIDC or token)
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: packages/un-datacommons-mcp/dist/
+          # If you prefer token-based publish, set PYPI_API_TOKEN in repo secrets and uncomment next line
+          # password: ${{ secrets.PYPI_API_TOKEN }}
+
+      - name: Create and push tag
+        if: success()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          TAG="un-datacommons-mcp-v${{ needs.check_version.outputs.new_version }}"
+          echo "Creating and pushing tag: $TAG"
+          git tag "$TAG"
+          git push origin "$TAG"
+
