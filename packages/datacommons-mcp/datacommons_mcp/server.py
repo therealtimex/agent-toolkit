@@ -374,7 +374,7 @@ async def get_datacommons_chart_config(
 @mcp.tool()
 async def search_indicators(
     query: str,
-    places: list[str] | None = None,
+    places: list[str],
     per_search_limit: int = 10,
     *,
     include_topics: bool = True,
