@@ -15,10 +15,10 @@
 {
 ...
     "mcpServers": {
-       "datacommons-mcp": {
+       "un-datacommons-mcp": {
            "command": "uvx",
             "args": [
-                "datacommons-mcp@latest",
+                "un-datacommons-mcp@latest",
                 "serve",
                 "stdio"
             ],

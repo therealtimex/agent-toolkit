@@ -7,10 +7,10 @@ A MCP server for fetching statistical data from Data Commons instances.
 
 ### Start MCP locally
 
-Option 1: Use the datacommons-mcp cli
+Option 1: Use the un-datacommons-mcp cli
 ```bash
 export DC_API_KEY={YOUR_API_KEY}
-uv run datacommons-mcp serve (http|stdio)
+uvx un-datacommons-mcp serve (http|stdio)
 ```
 
 Option 2: Use the fastmcp cli
@@ -35,17 +35,17 @@ uv run pytest
 > IMPORTANT: Open the inspector via the **pre-filled session token url** which is printed to terminal on server startup.
 > * It should look like `http://localhost:6274/?MCP_PROXY_AUTH_TOKEN={session_token}`
 
-Option 1: run inspector + datacommons-mcp cli
+Option 1: run inspector + un-datacommons-mcp cli
 ```bash
 export DC_API_KEY=<your-key> 
-npx @modelcontextprotocol/inspector uv run datacommons-mcp serve stdio
+npx @modelcontextprotocol/inspector uvx un-datacommons-mcp serve stdio
 ```
 
 The following values should be automatically populated:
 
 - Transport Type: `STDIO`
-- Command: `uv`
-- Arguments: `run datacommons-mcp serve stdio`
+- Command: `uvx`
+- Arguments: `un-datacommons-mcp serve stdio`
 
 
 Option 2: fastmcp cli
@@ -144,17 +144,17 @@ git push origin $BRANCH --no-verify
 
 ## Publishing a New Version
 
-To publish a new version of `datacommons-mcp` to [PyPI](https://pypi.org/project/datacommons-mcp):
+To publish a new version of `un-datacommons-mcp` to [PyPI](https://pypi.org/project/un-datacommons-mcp):
 
 1. **Update the version**: Edit `packages/datacommons-mcp/datacommons_mcp/version.py` and increment the version number:
    ```python
    __version__ = "0.1.3"  # or whatever the new version should be
    ```
 
-2. **Automatic publishing**: When your PR is merged to the main branch, the [GitHub Actions workflow](.github/workflows/build-and-publish-datacommons-mcp.yaml) will:
+2. **Automatic publishing**: When your PR is merged to the main branch, the [GitHub Actions workflow](.github/workflows/publish-un-datacommons-mcp.yaml) will:
    - Detect the version bump
    - Build the package
-   - Publish to PyPI at [https://pypi.org/project/datacommons-mcp](https://pypi.org/project/datacommons-mcp)
+   - Publish to PyPI at [https://pypi.org/project/un-datacommons-mcp](https://pypi.org/project/un-datacommons-mcp)
    - Create a git tag for the release
 
 The package will be automatically available on PyPI after the workflow completes successfully. You can monitor the workflow progress at [https://github.com/datacommonsorg/agent-toolkit/actions](https://github.com/datacommonsorg/agent-toolkit/actions).

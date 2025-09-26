@@ -6,7 +6,7 @@ The [Data Commons](https://datacommons.org) [Model Context Protocol (MCP)](https
 
 The MCP server returns data from datacommons.org by default or can be configured for a Custom Data Commons instance. 
 
-The server is a Python binary based on the [FastMCP 2.0 framework](https://gofastmcp.com). A prebuilt package is available at https://pypi.org/project/datacommons-mcp/.
+The server is a Python binary based on the [FastMCP 2.0 framework](https://gofastmcp.com). A prebuilt package is available at https://pypi.org/project/un-datacommons-mcp/.
 
 At this time, there is no centrally deployed server; you run your own server, and any client you want to connect to it.
 
@@ -152,7 +152,7 @@ To use it:
 1. Ensure you've set up the relevant server [environment variables](#environment-variables). If you're using a `.env` file, go to the directory where the file is stored.
 1. Run:
    ```
-   npx @modelcontextprotocol/inspector uvx datacommons-mcp serve stdio
+   npx @modelcontextprotocol/inspector uvx un-datacommons-mcp serve stdio
    ```
 1. Open the Inspector via the pre-filled session token URL which is printed to terminal on server startup. It should look like `http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=<session token>`. 
 1. Click on the link to open the browser. The tool is prepopulated with all relevant variables.
@@ -169,7 +169,7 @@ To use it:
 1. Ensure you've set up the relevant server [environment variables](#environment-variables). If you're using a `.env` file, go to the directory where the file is stored.
 1. Run:
    ```bash
-   uvx datacommons-mcp serve http [--port <port>]
+   uvx un-datacommons-mcp serve http [--port <port>]
    ```
 By default, the port is 8080 if you don't set it explicitly.
 
@@ -187,7 +187,7 @@ To configure Gemini CLI to connect to a remote Data Commons server over HTTP, re
 {
 ...
 "mcpServers": {
-    "datacommons-mcp": {
+    "un-datacommons-mcp": {
       "httpUrl": "http://<host>:<port>/mcp"
     }
     ...

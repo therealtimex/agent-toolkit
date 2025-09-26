@@ -14,8 +14,8 @@ This repository hosts the Data Commons MCP server and tooling as a Python (uv) w
 - Format: `uv run ruff format` (check only: `uv run ruff format --check`)
 - Lint: `uv run ruff check`
 - Tests (skip evals): `uv run --extra test pytest -k "not eval"`
-- Run server (HTTP): `uvx datacommons-mcp serve http --port 8080`
-- Run server (stdio): `uvx datacommons-mcp serve stdio`
+- Run server (HTTP): `uvx un-datacommons-mcp serve http --port 8080`
+- Run server (stdio): `uvx un-datacommons-mcp serve stdio`
 
 ## Coding Style & Naming Conventions
 - Python 3.11–3.12, 4‑space indentation, one import per line (isort via Ruff).
@@ -39,4 +39,3 @@ This repository hosts the Data Commons MCP server and tooling as a Python (uv) w
 - Never commit secrets. Use `packages/datacommons-mcp/.env.sample` as a template: `cp packages/datacommons-mcp/.env.sample packages/datacommons-mcp/.env`.
 - Set `DC_API_KEY` (required) and other `DC_*` variables as needed; environment variables override `.env`.
 - For local HTTP serve, the MCP endpoint is `http://localhost:<port>/mcp`.
-

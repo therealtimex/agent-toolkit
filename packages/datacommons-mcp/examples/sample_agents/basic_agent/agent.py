@@ -33,7 +33,7 @@ root_agent = LlmAgent(
                 timeout=10,
                 server_params=StdioServerParameters(
                     command="uvx",
-                    args=["datacommons-mcp", "serve", "stdio"],
+                    args=["un-datacommons-mcp", "serve", "stdio"],
                     env={"DC_API_KEY": DC_API_KEY},
                 ),
             )
