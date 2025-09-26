@@ -1,8 +1,8 @@
 """
-Version information for datacommons-mcp package.
+Version information for un-datacommons-mcp package.
 """
 
-# Updating the version here will trigger a new version of datacommons-mcp
-# package on PyPI when pushed to the main branch on github
-# See .github/workflows/build-and-publish-datacommons-mcp.yaml
-__version__ = "1.0.0"
+# Updating the version here will trigger a new PyPI release
+# via GitHub Actions when pushed to main.
+# See .github/workflows/publish-un-datacommons-mcp.yaml
+__version__ = "1.0.1"
