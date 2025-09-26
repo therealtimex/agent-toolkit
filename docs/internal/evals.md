@@ -1,6 +1,6 @@
 # Running Evaluations
 
-The `packages/datacommons-mcp/evals/` directory contains internal test agents built with the [Google Agent Development Kit (ADK)](https://github.com/google/adk-python/).
+The `packages/un-datacommons-mcp/evals/` directory contains internal test agents built with the [Google Agent Development Kit (ADK)](https://github.com/google/adk-python/).
 
 Their purpose is evaluation and regression testing of Data Commons MCP interactions.
 

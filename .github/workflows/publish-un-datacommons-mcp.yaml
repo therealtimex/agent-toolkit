@@ -21,7 +21,7 @@ jobs:
       - name: Compare core package version and check for bump
         id: versions
         run: |
-          FILE="packages/datacommons-mcp/datacommons_mcp/version.py"
+          FILE="packages/un-datacommons-mcp/datacommons_mcp/version.py"
 
           # Extract version from current commit
           NEW_VERSION=$(grep "__version__" "$FILE" | sed 's/__version__ = "\(.*\)"/\1/')
@@ -61,13 +61,13 @@ jobs:
         run: pip install uv
 
       - name: Build package
-        working-directory: packages/datacommons-mcp
+        working-directory: packages/un-datacommons-mcp
         run: uv build
 
       - name: Publish to PyPI (OIDC or token)
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          packages-dir: packages/datacommons-mcp/dist/
+          packages-dir: packages/un-datacommons-mcp/dist/
           # If you prefer token-based publish, set PYPI_API_TOKEN in repo secrets and uncomment next line
           # password: ${{ secrets.PYPI_API_TOKEN }}
 

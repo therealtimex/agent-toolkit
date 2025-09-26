@@ -17,7 +17,7 @@ Option 2: Use the fastmcp cli
 To start the MCP server, run:
 ```bash
 export DC_API_KEY={YOUR_API_KEY}
-cd packages/datacommons-mcp # navigate to package dir
+cd packages/un-datacommons-mcp # navigate to package dir
 uv run fastmcp run datacommons_mcp/server.py:mcp -t (http|stdio)
 ```
 
@@ -51,7 +51,7 @@ The following values should be automatically populated:
 Option 2: fastmcp cli
 ```bash
 export DC_API_KEY={YOUR_API_KEY}
-cd packages/datacommons-mcp # navigate to package dir
+cd packages/un-datacommons-mcp # navigate to package dir
 uv run fastmcp dev datacommons_mcp/server.py
 ```
 
@@ -146,7 +146,7 @@ git push origin $BRANCH --no-verify
 
 To publish a new version of `un-datacommons-mcp` to [PyPI](https://pypi.org/project/un-datacommons-mcp):
 
-1. **Update the version**: Edit `packages/datacommons-mcp/datacommons_mcp/version.py` and increment the version number:
+1. **Update the version**: Edit `packages/un-datacommons-mcp/datacommons_mcp/version.py` and increment the version number:
    ```python
    __version__ = "0.1.3"  # or whatever the new version should be
    ```

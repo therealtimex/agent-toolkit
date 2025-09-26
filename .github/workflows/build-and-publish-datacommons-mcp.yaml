@@ -24,7 +24,7 @@ jobs:
       - name: Compare versions and check for bump
         id: versions
         run: |
-          VERSION_FILE="packages/datacommons-mcp/datacommons_mcp/version.py"
+          VERSION_FILE="packages/un-datacommons-mcp/datacommons_mcp/version.py"
 
           # Get the version from the current commit
           NEW_VERSION=$(grep '__version__' $VERSION_FILE | sed 's/__version__ = "\(.*\)"/\1/')
@@ -63,7 +63,7 @@ jobs:
         run: pip install uv
 
       - name: Build
-        working-directory: packages/datacommons-mcp
+        working-directory: packages/un-datacommons-mcp
         run: uv build
 
       - name: Publish to PyPI

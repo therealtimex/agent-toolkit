@@ -1,13 +1,13 @@
 # Repository Guidelines
 
-This repository hosts the Data Commons MCP server and tooling as a Python (uv) workspace. The primary package lives under `packages/datacommons-mcp`.
+This repository hosts the Data Commons MCP server and tooling as a Python (uv) workspace. The primary package lives under `packages/un-datacommons-mcp`.
 
 ## Project Structure & Module Organization
-- `packages/datacommons-mcp/datacommons_mcp/`: core code — `server.py` (FastAPI server), `cli.py` (entrypoint), `services.py`, `clients.py`, `topics.py`, `data_models/*`, `data/*`.
-- `packages/datacommons-mcp/tests/`: pytest tests.
+- `packages/un-datacommons-mcp/datacommons_mcp/`: core code — `server.py` (FastAPI server), `cli.py` (entrypoint), `services.py`, `clients.py`, `topics.py`, `data_models/*`, `data/*`.
+- `packages/un-datacommons-mcp/tests/`: pytest tests.
 - `docs/`: user and internal docs; images in `docs/*.png`.
 - `.github/workflows/`: CI, build, and publish workflows.
-- Root `pyproject.toml`: uv workspace + shared tools; package-specific `pyproject.toml` in `packages/datacommons-mcp`.
+- Root `pyproject.toml`: uv workspace + shared tools; package-specific `pyproject.toml` in `packages/un-datacommons-mcp`.
 
 ## Build, Test, and Development Commands
 - Install deps: `uv sync`
@@ -25,7 +25,7 @@ This repository hosts the Data Commons MCP server and tooling as a Python (uv) w
 
 ## Testing Guidelines
 - Frameworks: `pytest`, `pytest-asyncio`.
-- Location: `packages/datacommons-mcp/tests/`; name tests `test_*.py`.
+- Location: `packages/un-datacommons-mcp/tests/`; name tests `test_*.py`.
 - Run unit tests locally: `uv run --extra test pytest -k "not eval"`.
 - Add tests for new features/bugfixes; prefer fast, deterministic tests. Mark or separate any network-dependent tests.
 
@@ -36,6 +36,6 @@ This repository hosts the Data Commons MCP server and tooling as a Python (uv) w
 - PRs: clear description, rationale, linked issues, and test updates. CI must pass.
 
 ## Security & Configuration Tips
-- Never commit secrets. Use `packages/datacommons-mcp/.env.sample` as a template: `cp packages/datacommons-mcp/.env.sample packages/datacommons-mcp/.env`.
+- Never commit secrets. Use `packages/un-datacommons-mcp/.env.sample` as a template: `cp packages/un-datacommons-mcp/.env.sample packages/un-datacommons-mcp/.env`.
 - Set `DC_API_KEY` (required) and other `DC_*` variables as needed; environment variables override `.env`.
 - For local HTTP serve, the MCP endpoint is `http://localhost:<port>/mcp`.
