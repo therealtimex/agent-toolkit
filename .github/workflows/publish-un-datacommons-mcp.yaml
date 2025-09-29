@@ -77,6 +77,12 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           TAG="un-datacommons-mcp-v${{ needs.check_version.outputs.new_version }}"
-          echo "Creating and pushing tag: $TAG"
-          git tag "$TAG"
-          git push origin "$TAG"
+
+          # Check if tag already exists on remote
+          if git ls-remote --tags origin | grep -q "refs/tags/$TAG$"; then
+            echo "Tag $TAG already exists on remote, skipping creation"
+          else
+            echo "Creating and pushing tag: $TAG"
+            git tag "$TAG"
+            git push origin "$TAG"
+          fi
